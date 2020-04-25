@@ -50,7 +50,7 @@ from keras.layers import Flatten,Dense,Lambda
 # again because this is regressioon and not classsification
 # Basically this is to minimize the error bw the predicted steering and ground truth steering
 model = Sequential()
-model.add(Lambda(lambda x: x/255.0, input_shape=(160,320,3)))
+model.add(Lambda(lambda x: x/255.0 - 0.5, input_shape=(160,320,3)))
 model.add(Flatten())
 model.add(Dense(1))
 

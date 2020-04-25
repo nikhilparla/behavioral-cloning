@@ -31,7 +31,10 @@ Provided a simulator where you can steer a car around a track for data collectio
   * Trained to 15 epochs
   * loss: 0.0463 - val_loss: 0.0594
   * Much better performance than the non-normalzed model when driven autonomously
-
+* Normalized values to 0 by sbtracting 0.5
+  * 10 epochs
+  * loss: 5.6755 - val_loss: 4.1779
+  * Not good performance
 
 ---------------------------------------------------
 
