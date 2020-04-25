@@ -22,7 +22,7 @@ Provided a simulator where you can steer a car around a track for data collectio
 ###### Progress
 * Used pandas library for parsing driving log csv file
 * model.py has cv2 calls for visualizing images from driving log
-
+* Populated the images and measurements array with the images from centre camera and steering angle
 ---------------------------------------------------
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
