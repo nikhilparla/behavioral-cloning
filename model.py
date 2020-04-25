@@ -31,12 +31,19 @@ for row in range(df.shape[0]):
     get_image(df['center'][row].split("/")[-1])
     get_measurements(df['steering'][row])
 
-print('Images length', len(images))
-print('measurements length', len(measurements))
+augmented_images, augmented_measurements = [],[]
+for image,meas in zip(images, measurements):
+    augmented_images.append(image)
+    augmented_measurements.append(meas)
+    augmented_images.append(cv2.flip(image,1))
+    augmented_measurements.append(meas*-1.0)
 
-X_train = np.array(images)
-y_train = np.array(measurements)
-print('images shape = ',np.shape(images))
+print('Images length', len(augmented_images))
+print('measurements length', len(augmented_measurements))
+
+X_train = np.array(augmented_images)
+y_train = np.array(augmented_measurements)
+print('images shape = ',np.shape(augmented_images))
 
 from keras.models import Sequential
 from keras.layers import Flatten,Dense,Lambda

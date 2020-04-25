@@ -39,6 +39,10 @@ Provided a simulator where you can steer a car around a track for data collectio
   * 10 epochs
   * loss: 0.0163 - val_loss: 0.0115
   * Much cleaner driving, but not enough data for performance
+* Data augmentation by flipping the centre images
+  * 10 epochs
+  * loss: 0.0250 - val_loss: 0.0184\
+  * Car travelled for almost half the distance with no issues.
 
 ---------------------------------------------------
 
