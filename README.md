@@ -24,8 +24,14 @@ Provided a simulator where you can steer a car around a track for data collectio
 * model.py has cv2 calls for visualizing images from driving log
 * Populated the images and measurements array with the images from centre camera and steering angle
 * Added initial model and trained according to instructions from the project notes.
-* Model trained to 20 epochs, saved to h5 file and used and trained.
+  * Model trained to 20 epochs, saved to h5 file and used and trained.
+  * loss: 1752.2630 - val_loss: 2690.2254
 * drive.py able to load model from h5 and drive the car. All connections fine. 
+* Added a lambda layer for normalizing values dividing by 255.0
+  * Trained to 15 epochs
+  * loss: 0.0463 - val_loss: 0.0594
+  * Much better performance than the non-normalzed model when driven autonomously
+
 
 ---------------------------------------------------
 

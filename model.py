@@ -39,7 +39,7 @@ y_train = np.array(measurements)
 print('images shape = ',np.shape(images))
 
 from keras.models import Sequential
-from keras.layers import Flatten,Dense
+from keras.layers import Flatten,Dense,Lambda
 
 # Most basic network - flattend image conencted to a single output node
 # The single output node will predict the steering angle which makes this a regression network
@@ -50,10 +50,12 @@ from keras.layers import Flatten,Dense
 # again because this is regressioon and not classsification
 # Basically this is to minimize the error bw the predicted steering and ground truth steering
 model = Sequential()
-model.add(Flatten(input_shape=(160,320,3)))
+model.add(Lambda(lambda x: x/255.0, input_shape=(160,320,3)))
+model.add(Flatten())
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(X_train, y_train, validation_split=0.2,shuffle=True, nb_epoch=10)
+model.fit(X_train, y_train, validation_split=0.2,shuffle=True, nb_epoch=15)
 
 model.save('model.h5')
+exit()
