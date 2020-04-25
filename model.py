@@ -1,5 +1,6 @@
 import pandas as pd
 import cv2
+import numpy as np
 
 cv2.namedWindow("Input")
 
@@ -9,7 +10,7 @@ images = []
 measurements = []
 
 def get_image(img_name):
-    print("./train_data/IMG/"+ img_name)
+    #print("./train_data/IMG/"+ img_name)
     image = cv2.imread("./train_data/IMG/"+ img_name)
     images.append(image)
 """    
@@ -19,7 +20,7 @@ def get_image(img_name):
 """
 
 def get_measurements(meas):
-    print(meas)
+    #print(meas)
     measurements.append(meas)
 
 for row in range(df.shape[0]):
@@ -32,3 +33,27 @@ for row in range(df.shape[0]):
 
 print('Images length', len(images))
 print('measurements length', len(measurements))
+
+X_train = np.array(images)
+y_train = np.array(measurements)
+print('images shape = ',np.shape(images))
+
+from keras.models import Sequential
+from keras.layers import Flatten,Dense
+
+# Most basic network - flattend image conencted to a single output node
+# The single output node will predict the steering angle which makes this a regression network
+# For classification network we might apply a softmax activation function to op layer
+# Since this is regression, the single output node directly predicts the steering measurement
+# So not activation function here
+# For loss function, we use mean squared error, mse instead of the cross-entroy function, 
+# again because this is regressioon and not classsification
+# Basically this is to minimize the error bw the predicted steering and ground truth steering
+model = Sequential()
+model.add(Flatten(input_shape=(160,320,3)))
+model.add(Dense(1))
+
+model.compile(loss='mse', optimizer='adam')
+model.fit(X_train, y_train, validation_split=0.2,shuffle=True, nb_epoch=10)
+
+model.save('model.h5')
