@@ -40,6 +40,8 @@ print('images shape = ',np.shape(images))
 
 from keras.models import Sequential
 from keras.layers import Flatten,Dense,Lambda
+from keras.layers.convolutional import Convolution2D
+from keras.layers.pooling import MaxPooling2D
 
 # Most basic network - flattend image conencted to a single output node
 # The single output node will predict the steering angle which makes this a regression network
@@ -51,7 +53,13 @@ from keras.layers import Flatten,Dense,Lambda
 # Basically this is to minimize the error bw the predicted steering and ground truth steering
 model = Sequential()
 model.add(Lambda(lambda x: x/255.0 - 0.5, input_shape=(160,320,3)))
+model.add(Convolution2D(6,5,5,activation='relu'))
+model.add(MaxPooling2D())
+model.add(Convolution2D(6,5,5,activation='relu'))
+model.add(MaxPooling2D())
 model.add(Flatten())
+model.add(Dense(120))
+model.add(Dense(84))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')

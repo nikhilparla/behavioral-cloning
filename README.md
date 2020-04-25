@@ -35,6 +35,10 @@ Provided a simulator where you can steer a car around a track for data collectio
   * 10 epochs
   * loss: 5.6755 - val_loss: 4.1779
   * Not good performance
+* Lenet architecture implemented
+  * 10 epochs
+  * loss: 0.0163 - val_loss: 0.0115
+  * Much cleaner driving, but not enough data for performance
 
 ---------------------------------------------------
 
