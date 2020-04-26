@@ -19,9 +19,13 @@ def get_image(img_name):
     cv2.waitKey(33)
 """
 
-def get_measurements(meas):
-    #print(meas)
-    measurements.append(meas)
+def get_measurements(meas, flag):
+    if(flag == 'center'):
+        measurements.append(meas)
+    else if(flag == 'right'):
+        measurements.append(meas- 0.2)
+    else if(flag == 'left'):
+        measurements.append(meas + 0.2)
 
 for row in range(df.shape[0]):
     #print('row = ', row)
@@ -29,7 +33,11 @@ for row in range(df.shape[0]):
     # img is the last value so using -1
     #print(df['center'][row].split("/")[-1])
     get_image(df['center'][row].split("/")[-1])
-    get_measurements(df['steering'][row])
+    get_measurements(df['steering'][row], 'center')
+    get_image(df['right'][row].split("/")[-1])
+    get_measurements(df['steering'][row], 'right')
+    get_image(df['left'][row].split("/")[-1])
+    get_measurements(df['steering'][row], 'left')
 
 augmented_images, augmented_measurements = [],[]
 for image,meas in zip(images, measurements):

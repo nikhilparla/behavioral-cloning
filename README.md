@@ -43,6 +43,11 @@ Provided a simulator where you can steer a car around a track for data collectio
   * 10 epochs
   * loss: 0.0250 - val_loss: 0.0184\
   * Car travelled for almost half the distance with no issues.
+* Added right and left camera images
+  * 10 epochs
+  * loss: 0.0072 - val_loss: 0.0315
+  * I see that it is very capable of correcting itslef at the corners but still goes oit of the path
+
 
 ---------------------------------------------------
 
