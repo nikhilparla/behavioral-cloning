@@ -47,6 +47,33 @@ Provided a simulator where you can steer a car around a track for data collectio
   * 10 epochs
   * loss: 0.0072 - val_loss: 0.0315
   * I see that it is very capable of correcting itslef at the corners but still goes oit of the path
+* Cropped top 75 pixels and bottom 25
+  * 10 epochs
+  * loss: 0.0234 - val_loss: 0.0340
+  * Better performace at curves
+* NVDIA autodriving team model
+  * 10 epochs
+  * loss 0.0099 
+  * Less performace than lenet in my case
+* Collected more data with corner cases, removed flipping and left, right images
+  * total 8000 images with clockwise and counter clockwise driving training
+  * Same NVIDIA architecture, 10 epochs
+  * Collected some scenarious driving back when water encountered
+  * 0.0203 - val_loss: 0.2632
+  * Runs, but eventually falls off the path.
+* Need more data, implementing generator
+* Implemented generator for centre images
+  * No flipping the images in the round, just testing the basic generator
+  * loss: 0.0305 - val_loss: 0.0609
+  * Decent performace but fell into water
+* Got data from the other track 
+  * More validation loss. Over fitting.
+  * Reduced epocs to 8
+  * Track completed.
+###### Issues
+* Training the model immediately after collecting data doent seem to work since the 
+gpu doesnt seem to release free memory. Of the 12 GB available, only 400 MB is shown as 
+free.Restarting the workspace solves it.
 
 
 ---------------------------------------------------
