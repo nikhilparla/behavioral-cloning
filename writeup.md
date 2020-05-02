@@ -30,6 +30,8 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md or writeup_report.pdf summarizing the results
+* track1.MP4 video file proving the model on track1
+* track2.MP4 video file proving model on track2
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -45,9 +47,9 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24and 64(model.py lines 96-100)
+My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24and 64(model.py lines 96-110)
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model includes RELU layers to introduce nonlinearity (code line 99), and the data is normalized in the model using a Keras lambda layer (code line 97). 
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -61,7 +63,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.  
 
 For details about how I created the training data, see the next section. 
 
@@ -123,15 +125,21 @@ I then recorded the vehicle recovering from the left side and right sides of the
 ![correction_2][./images/correction_2.png]
 ![correction_3][./images/correction_3.png]
 
-Then I repeated this process on track two in order to get more data points, when I finally had 12900 images to work with. 
+Then I repeated this process on track two in order to get more data points, when I finally had ~28000 images to work with. This is the distribution of the data before any data augmentation.
+
+![histogram][./images/histogram.png]
 
 To augment the data sat, I also flipped images and angles thinking that this would as this would be a quick way to mimic the data driving the other way on the track
 
 The center images have been augmented with the left and right camera images by adding and subtracting respectively the steering angle by a factor of 0.3.
 
-After the collection process, I had ~68000 number of data points. I then preprocessed this data by deleting the top 70 pixels and bottom 20 pixels of the images since they do not provide any valid features.
+After the collection process, I had ~96000 number of data points. I then preprocessed this data by deleting the top 70 pixels and bottom 20 pixels of the images since they do not provide any valid features.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by the final val_loss values given the README.md.  I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+I tried to remove a few data points where the steering angle was zero to optimize the data spread (lines 22-26). I commented out the code since it did not add significant improvement to the training.
+
+I also tried to delete a few data points randomly irrespective of the steering angle to generalize the data more. This too hasn't resulted in any significant change. So commented it out (lines 29 - 35)
