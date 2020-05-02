@@ -70,6 +70,15 @@ Provided a simulator where you can steer a car around a track for data collectio
   * More validation loss. Over fitting.
   * Reduced epocs to 8
   * Track completed.
+* Randomly deleting 20 percent of data where steering angle is 0
+  * The zero angles are too many in the training data so reducing them by not adding every 5th element into the list
+  * Performance bad
+* Added dropout layer to prevent overfitting
+  * dropout layer at 0.3
+  * Better performance
+* Added one more track of data for track 2 driving counterclockwise
+  * Good performance over the track2.
+
 ###### Issues
 * Training the model immediately after collecting data doent seem to work since the 
 gpu doesnt seem to release free memory. Of the 12 GB available, only 400 MB is shown as 
