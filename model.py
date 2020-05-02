@@ -34,10 +34,9 @@ for row in range(df.shape[0]):
 # samples = remove(samples,0.25)
 # print('after random deletion', len(samples))
 
-#import matplotlib.pyplot as plt
-#plt.hist([i[1] for i in samples], bins=20)
-#plt.show()
-#train_samples, validation_samples = train_test_split(samples,test_size = 0.2)
+print('Sample size = ', len(samples))
+print('After augmentation, training data size will be size = ', 0.8 * len(samples) * 4)
+train_samples, validation_samples = train_test_split(samples,test_size = 0.2)
 
 def generator(samples, batch_size=32):
     num_samples = len(samples)
@@ -103,20 +102,23 @@ model.add(Convolution2D(64,3,3,activation='relu'))
 model.add(Convolution2D(64,3,3,activation='relu'))
 model.add(Flatten())
 model.add(Dense(100))
-model.add(Dropout(0.3))
+model.add(Dropout(0.5))
 model.add(Dense(50))
+model.add(Dropout(0.5))
 model.add(Dense(10))
+model.add(Dropout(0.5))
 model.add(Dense(1))
-print(model.summary())
 model.compile(loss='mse', optimizer='adam')
 
-from keras.models import load_model
-model = load_model('model.h5')
+print(model.summary())
+
+# from keras.models import load_model
+# model = load_model('model.h5')
 
 model.fit_generator(train_generator, 
                     steps_per_epoch=math.ceil(len(train_samples)/batch_size), 
                     validation_data=validation_generator, 
                     validation_steps=math.ceil(len(validation_samples)/batch_size), 
-                    epochs=3, verbose=1)
-model.save('model.h5')
+                    epochs=10, verbose=1)
+model.save('model_final.h5')
 exit()

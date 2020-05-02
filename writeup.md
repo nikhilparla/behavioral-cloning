@@ -6,21 +6,16 @@
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
+
 * Build, a convolution neural network in Keras that predicts steering angles from images
+
 * Train and validate the model with a training and validation set
+
 * Test that the model successfully drives around track one without leaving the road
+
 * Summarize the results with a written report
 
-
-[//]: # "Image References"
-
-[image1]: ./images/model_summary.png "Model Visualization"
-[image2]: ./images/histogram.png "Training Data histogram"
-[image3]: ./images/placeholder_small.png "Recovery Image"
-[image4]: ./images/placeholder_small.png "Recovery Image"
-[image5]: ./images/placeholder_small.png "Recovery Image"
-[image6]: ./images/placeholder_small.png "Normal Image"
-[image7]: ./images/placeholder_small.png "Flipped Image"
+  
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -124,20 +119,17 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![correction-1][./images/model_summary.png/correction_1.png]
-![correction_2][./images/model_summary.png/correction_2.png]
-![correction_3][./images/model_summary.png/correction_3.png]
+![correction-1][./images/correction_1.png]
+![correction_2][./images/correction_2.png]
+![correction_3][./images/correction_3.png]
 
 Then I repeated this process on track two in order to get more data points, when I finally had 12900 images to work with. 
 
 To augment the data sat, I also flipped images and angles thinking that this would as this would be a quick way to mimic the data driving the other way on the track
 
-![alt text][image6]
-![alt text][image7]
-
 The center images have been augmented with the left and right camera images by adding and subtracting respectively the steering angle by a factor of 0.3.
 
-After the collection process, I had 12900 number of data points. I then preprocessed this data by deleting the top 70 pixels and bottom 20 pixels of the images since they do not provide any valid features.
+After the collection process, I had ~68000 number of data points. I then preprocessed this data by deleting the top 70 pixels and bottom 20 pixels of the images since they do not provide any valid features.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
