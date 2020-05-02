@@ -71,8 +71,6 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
-
 My first step was to use a convolution neural network model similar to the lenet architecture described in the class. It is a powerful model with deep enough layers to tackle the various road conditions and variations. While it performed fine with smaller training data, the performance couldn't be replicated with larger data set when many scenarios had been captured in the training data. Here is the summary of the modified lenet, with dropouts added after dense layers.
 
 <img src="./images/lenet_model_summary.png" alt="lenet" style="zoom:75%;" />
@@ -83,11 +81,9 @@ In order to gauge how well the model was working, I split my image and steering 
 
 I noted down in the 'progress' section of the README.md all the steps I have taken to come to the final model and data augmentation. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model by adding additional dropout layers after 
+To combat the overfitting, I modified the model by adding additional dropout layers after the dense layers
 
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track, I took a few data points around that region to improve the driving behavior in these cases.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -117,17 +113,23 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][./images/center_img_1.jpg]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![correction-1][./images/correction_1.jpg]
-![correction_2][./images/correction_2.jpg]
-![correction_3][./images/correction_3.jpg]
+![centre](./images/center_img_1.jpg)
+
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to correct itself from offcenter :
+
+![corr-1](./images/correction_1.jpg)
+
+![corr2](./images/correction_2.jpg)
+
+![corr3](./images/correction_3.jpg)
 
 Then I repeated this process on track two in order to get more data points, when I finally had ~28000 images to work with. This is the distribution of the data before any data augmentation.
 
-![histogram][./images/histogram.png]
+![hist](./images/histogram.png)
+
+
 
 To augment the data sat, I also flipped images and angles thinking that this would as this would be a quick way to mimic the data driving the other way on the track
 
