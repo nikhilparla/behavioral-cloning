@@ -78,7 +78,7 @@ The overall strategy for deriving a model architecture was to ...
 
 My first step was to use a convolution neural network model similar to the lenet architecture described in the class. It is a powerful model with deep enough layers to tackle the various road conditions and variations. While it performed fine with smaller training data, the performance couldn't be replicated with larger data set when many scenarios had been captured in the training data. Here is the summary of the modified lenet, with dropouts added after dense layers.
 
-<img src="C:\Users\Nikhparl\Documents\Aptiv_MY_Documents\Acads\Udacity\behavioral_cloning\CarND-Behavioral-Cloning-P3-master\images\lenet_model_summary.png" alt="lenet" style="zoom:75%;" />
+<img src="./images/lenet_model_summary.png" alt="lenet" style="zoom:75%;" />
 
 Moving on, I implemented the NVIDIA team model as suggested in the class with a couple of variations.
 
@@ -114,19 +114,19 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![nvidia_model](C:\Users\Nikhparl\Documents\Aptiv_MY_Documents\Acads\Udacity\behavioral_cloning\CarND-Behavioral-Cloning-P3-master\images\model_summary.png)
+![nvidia_model](./images/model_summary.png)
 
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][./examples/center_img_1.png]
+![alt text][./images/center_img_1.png]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![correction-1][./examples/correction_1.png]
-![correction_2][./examples/correction_2.png]
-![correction_3][./examples/correction_3.png]
+![correction-1][./images/model_summary.png/correction_1.png]
+![correction_2][./images/model_summary.png/correction_2.png]
+![correction_3][./images/model_summary.png/correction_3.png]
 
 Then I repeated this process on track two in order to get more data points, when I finally had 12900 images to work with. 
 
